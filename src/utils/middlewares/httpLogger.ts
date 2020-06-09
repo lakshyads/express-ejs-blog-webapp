@@ -17,7 +17,8 @@ import { httpLoggerOptions, doLogRequest, doLogResponse } from '../../config/htt
  * @var showCookies
 */
 export interface httpLogOptions {
-    showBody?: boolean,
+    showReqBody?: boolean,
+    showResBody?: boolean,
     showHeaders?: boolean,
     showSession?: boolean,
     showCookies?: boolean,
@@ -44,7 +45,7 @@ const logHttp = (req: Request, res: Response, next: NextFunction) => {
     );
 
     doLogRequest && logRequest(req, httpLoggerOptions, 'Logged by httpLogger middleware');
-    doLogResponse && logResponse(req, res, startTimer, httpLoggerOptions.showBody);
+    doLogResponse && logResponse(req, res, startTimer, httpLoggerOptions.showResBody);
 
 
     next();
@@ -57,17 +58,17 @@ const logHttp = (req: Request, res: Response, next: NextFunction) => {
  * @param options  httpLogOptions. Default = `{ showBody = true, showSession = true, showHeaders = true, showCookies = true }`
  * @param message Optional message
  */
-const logRequest = (req: Request, { showBody = true, showSession = true, showHeaders = true, showCookies = true }: httpLogOptions = {}, message?: string | null,) => {
+const logRequest = (req: Request, { showReqBody = true, showSession = true, showHeaders = true, showCookies = true }: httpLogOptions = {}, message?: string | null,) => {
     log('\n')
     log(`${chalk.magenta.bold(`(?) Request spec =`)} `, {
         requested: `${req?.method} ${req?.path}`,
         timeStamp: dateTimeStamp(),
         req: {
             protocol: req?.protocol ?? '',
-            params: req?.params ?? '',
+            params: req?.params ? 'not empty' : 'empty',
             cookies: showCookies ? req?.cookies ?? '' : 'not logged',
             sessionId: req?.sessionID ?? '',
-            body: showBody ? req?.body ?? '' : 'not logged',
+            body: showReqBody ? req?.body ?? '' : 'not logged',
             session: showSession ? req?.session ?? '' : 'not logged',
             headers: showHeaders ? req?.headers ?? '' : 'not logged',
             stale: req?.stale ?? '',

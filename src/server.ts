@@ -16,12 +16,13 @@ import { newLine } from './utils/loggerUtil';
 // Initialize server
 const server = express();
 server.use(express.json());
-server.use(express.urlencoded({ extended: false }));
+server.use(express.urlencoded({ extended: true }));
+// server.use(bodyParser.urlencoded({ extended: true }));
 server.use(httpLogger);
 
 // Set `ViewEngine` and specify `directory to serve static content from`
 server.use(express.static('public'));
-server.engine('.html',require('ejs').renderFile); // Uncomment to render 'html' with 'ejs' after installing 'ejs' module
+server.engine('.html', require('ejs').renderFile); // Uncomment to render 'html' with 'ejs' after installing 'ejs' module
 server.set('view engine', 'html'); // Uncomment to set view engine after uncommenting above line
 
 // Initialize variables

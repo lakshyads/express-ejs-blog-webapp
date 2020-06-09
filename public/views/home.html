@@ -1,0 +1,10 @@
+<!-- Include header -->
+<%- include("partials/header.ejs") -%>
+
+<% posts.forEach(post => {%>
+<h1><strong> <%= post.title %> </strong> </h1>
+<p> <%= post.body %> <a href="<%= '/posts/'+ post.title %>">Read More</a> </p>
+        <%}); %>
+
+        <!-- Include footer -->
+        <%- include("partials/footer.ejs") -%>

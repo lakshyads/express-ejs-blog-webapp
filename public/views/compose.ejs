@@ -1,0 +1,18 @@
+<!-- Include header -->
+<%- include("partials/header.ejs") -%>
+
+<h1><strong>Compose</strong> </h1>
+<form action="/compose" method="POST">
+    <div class="form-group">
+        <label for="postTitle">Title</label>
+        <input id="postTitle" class="form-control" type="text" autocomplete="false" name="postTitle">
+    </div>
+    <div class="form-group">
+        <label for="postBody">Post</label> 
+        <textarea id="postBody" class="form-control" autocomplete="false" name="postBody" rows="4"></textarea>
+    </div>    
+    <button type="submit" class="btn btn-primary" name="button">Publish</button>
+</form>
+
+<!-- Include footer -->
+<%- include("partials/footer.ejs") -%>

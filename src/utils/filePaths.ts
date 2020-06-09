@@ -15,14 +15,20 @@ const resolveStyles = (styleName: string) => {
     return path.resolve('public/views/assets/styles/' + styleName);
 };
 
-/** Absolute paths of views present in `public/views` directory */
+/** File names of views present in `public/views` directory */
 const views = {
-    INDEX: resolveViews('index.html'),
+    "INDEX": 'index.html',
+    "HOME": 'home.html',
+    "ABOUT": 'about.ejs',
+    "CONTACT": 'contact.ejs',
+    "COMPOSE": 'compose.ejs',
+    "POST": 'post.ejs',
 };
 
-/** Absolute paths of style files present in `public/views/styles` directory */
+/**  File names of style files present in `public/views/assets/styles` directory */
 const styles = {
-    INDEX: resolveStyles('index.css'),
+    INDEX: 'index.css',
+    GLOBAL: 'style.css',
 };
 
 // Exports ------------------------------------------------------------------------------------------------------------------------

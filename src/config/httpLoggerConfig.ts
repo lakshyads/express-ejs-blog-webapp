@@ -8,7 +8,8 @@ export const doLogResponse: boolean = true;
 
 /** Http log default options */
 const httpLoggerOptions: httpLogOptions = {
-    showBody: true,
+    showReqBody: true,
+    showResBody: false,
     showCookies: true,
     showHeaders: false,
     showSession: true,
